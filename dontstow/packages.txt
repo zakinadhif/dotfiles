@@ -1,0 +1,14 @@
+# Packages
+fontawesome-fonts
+dunst
+picom
+i3gaps
+i3lock
+i3status
+hsetroot / feh
+xsel
+rofi
+xsettingsd
+lxappearance
+scrot
+viewnior
