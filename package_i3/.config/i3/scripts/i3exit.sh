@@ -2,7 +2,7 @@
 
 case "$1" in
     lock)
-        i3lock-fancy -f Hack-Regular
+        i3lock-fancy -f Hack-Regular -n -- maim
         ;;
     logout)
         i3-msg exit
