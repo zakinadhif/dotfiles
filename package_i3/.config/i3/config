@@ -20,6 +20,7 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id xfce4-clipman
 exec --no-startup-id xset s 180 120
 exec --no-startup-id xset dpms 300 300 300
+exec --no-startup-id xautolock -time 7 -locker 'systemctl suspend'
 exec --no-startup-id xss-lock --transfer-sleep-lock -n ~/.config/i3/scripts/dim-screen.sh -- ~/.config/i3/scripts/i3exit.sh lock
 exec --no-startup-id i3-msg 'workspace $ws1; exec xfce4-terminal --hide-scrollbar --hide-menubar; workspace $ws1'
 exec --no-startup-id i3-msg 'workspace $ws2; exec firefox; workspace $ws1'
