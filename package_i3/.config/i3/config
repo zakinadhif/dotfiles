@@ -2,14 +2,14 @@
 # Reference: https://i3wm.org/docs/userguide.html
 
 # Modifier Keys
-set $mod Mod4
+set $mod Mod1
 set $alt Mod1
 
 # Font: Title, Bar
 font pango:Source Code Pro 9
 
 # Autostart
-exec --no-startup-id feh --bg-fill '/home/zndf/Pictures/Wallpapers/andrew-sterling-c9JsKh6G1bo-unsplash.jpg'
+exec --no-startup-id feh --bg-scale '/home/zndf/Pictures/Wallpapers/andrew-ruiz-T51okBef_QQ-unsplash.jpg'
 exec --no-startup-id xsettingsd &
 exec --no-startup-id picom -b
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -41,6 +41,7 @@ new_window pixel 1
 new_float normal 0
 focus_follows_mouse no
 floating_modifier $mod
+workspace_auto_back_and_forth yes
 
 # Keybinds: Commons
 bindsym $mod+Return         exec xfce4-terminal --hide-scrollbar --hide-menubar
@@ -167,6 +168,10 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $alt+Shift+Control+Right move container to workspace next; workspace next
 bindsym $alt+Shift+Control+Left move container to workspace prev; workspace prev
+
+# Scratchpad Configuration
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 # [resize] Keybinds: Resize Window
 mode "resize" {
