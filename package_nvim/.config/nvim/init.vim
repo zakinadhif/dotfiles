@@ -25,10 +25,16 @@ Plug 'sheerun/vim-polyglot'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'Chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'Yggdroot/indentLine'
+Plug 'alvan/vim-closetag'
+Plug 'mlaursen/vim-react-snippets'
 
 " Themes
 Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'xiyaowong/nvim-transparent'
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
@@ -52,11 +58,22 @@ let g:asmsyntax = "nasm"
 syntax on
 
 " Themes
-let g:airline_theme = "nord"
-let g:gruvbox_italic=1
+let g:airline_theme = "ayu_mirage"
+let g:gruvbox_italic = 1
 
+let ayucolor="mirage"
 set background=dark
-colorscheme nord
+colorscheme ayu
+
+let g:transparent_enabled = v:false
+set nowrap
+"-- set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
+"-- hi VertSplit guibg=bg guifg=bg
+
+let g:indentLine_char = '¦'
+let g:indentLine_first_char = '¦'
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0
 
 " ===== User-defined Commands
 " Close current opened buffer
@@ -64,8 +81,11 @@ command CloseBuffer bprev | bdelete #
 
 " ===== User-defined Mappings
 " Move among buffers with CTRL
-map <C-J> :bnext<CR>
-map <C-K> :bprev<CR>
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>
+
+" Clear highlighted words by pressing Esc 2x
+nnoremap <esc><esc> :noh<return>
 
 " Quit from terminal mode using Esc
 tnoremap <Esc> <C-\><C-n>
@@ -92,7 +112,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 
 " # Neomake
 let g:neomake_make_maker = {'exe': 'make', 'args': ['--build'], 'errorformat': '%f:%l:%c: %m'}
@@ -293,6 +313,50 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" # vim-closetag
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+"
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ 'typescriptreact': 'jsxRegion,tsxRegion',
+    \ 'javascriptreact': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
 
 " !!! IDK WHAT DIS AREA !!!
 if (has("nvim"))
