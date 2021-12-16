@@ -1,3 +1,10 @@
+" init.vim
+" --------
+"
+"  A litte note: this init script requires https://github.com/junegunn/vim-plug
+"  to be installed. Replace line 13 with `call plug#begin('~/.vim/plugged/')`
+"  if used for vim, it will place the plugins at `~/.vim/plugged`.
+
 set nocompatible
 
 " Use vim-lsp-cxx-highlight instead of polyglot's c++ code highlighter
