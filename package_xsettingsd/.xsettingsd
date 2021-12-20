@@ -5,3 +5,5 @@ Xft/Antialias 1
 
 Net/ThemeName "Nordic"
 Net/IconThemeName "Papirus-Dark"
+
+Gtk/CursorThemeName "breeze"

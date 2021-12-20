@@ -9,7 +9,7 @@ set $alt Mod1
 font pango:Source Code Pro 9
 
 # Autostart
-exec --no-startup-id feh --bg-scale '/home/zndf/Pictures/Wallpapers/andrew-ruiz-T51okBef_QQ-unsplash.jpg'
+exec --no-startup-id feh --bg-scale '/home/zndf/Pictures/Wallpapers/flickr-azzyphoto-19740689179_81dafdaa42_h.jpg'
 exec --no-startup-id xsettingsd &
 exec --no-startup-id picom -b
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -23,7 +23,8 @@ exec --no-startup-id xset dpms 300 300 300
 exec --no-startup-id xautolock -time 7 -locker 'systemctl suspend'
 exec --no-startup-id xss-lock --transfer-sleep-lock -n ~/.config/i3/scripts/dim-screen.sh -- ~/.config/i3/scripts/i3exit.sh lock
 exec --no-startup-id i3-msg 'workspace $ws1; exec xfce4-terminal --hide-scrollbar --hide-menubar; workspace $ws1'
-exec --no-startup-id i3-msg 'workspace $ws2; exec firefox; workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws2; exec chromium; workspace $ws1'
+#exec --no-startup-id i3-msg 'workspace $ws10; exec ~/.config/i3/scripts/launch-ravioli.sh'
 
 # Utility Variables
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -122,6 +123,7 @@ assign [class=discord] $ws3
 assign [class=Geany|Evince|Gucharmap|Soffice|libreoffice*] $ws4
 assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] $ws5
 assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] $ws6
+assign [class=Pamac-manager] $ws9
 
 # App Window Preference
 for_window [class=Code] border pixel 0
@@ -154,6 +156,8 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 bindsym $alt+Control+Right workspace next
 bindsym $alt+Control+Left workspace prev
+
+bindsym $mod+q workspace number $ws4
 
 # Window Workspace Placement
 bindsym $mod+Shift+1 move container to workspace number $ws1

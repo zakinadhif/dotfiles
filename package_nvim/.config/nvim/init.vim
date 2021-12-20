@@ -18,11 +18,6 @@ Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'preservim/tagbar'
 
-"' C/C++ QoL Plugins
-Plug 'vhdirk/vim-cmake'
-Plug 'neomake/neomake'
-Plug 'jackguo380/vim-lsp-cxx-highlight'
-
 " Git Plugins
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -30,15 +25,14 @@ Plug 'airblade/vim-gitgutter'
 " QoL Plugins
 Plug 'sheerun/vim-polyglot'
 Plug 'derekwyatt/vim-fswitch'
-Plug 'Chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'alvan/vim-closetag'
 Plug 'mlaursen/vim-react-snippets'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'romgrk/barbar.nvim'
 
 " Themes
-Plug 'morhetz/gruvbox'
-Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xiyaowong/nvim-transparent'
 Plug 'ayu-theme/ayu-vim'
@@ -51,8 +45,6 @@ set mouse=a
 
 " Indentation & Number Bar
 set number
-set tabstop=4
-set shiftwidth=4
 
 " Show otherwise invisible characters
 set list
@@ -87,6 +79,10 @@ let g:indentLine_setColors = 0
 command CloseBuffer bprev | bdelete #
 
 " ===== User-defined Mappings
+" Move among soft wrapped lines without jumping around
+nnoremap <expr> <Down> v:count ? 'j' : 'gj'
+nnoremap <expr> <Up> v:count ? 'k' : 'gk'
+
 " Move among buffers with CTRL
 nnoremap <C-N> :bnext<CR>
 nnoremap <C-P> :bprev<CR>
@@ -113,35 +109,69 @@ vnoremap <A-Down> :m '>+1<CR>gv=gv
 vnoremap <A-Up> :m '<-2<CR>gv=gv
 
 " ===== Extensions Settings
-" # Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" # Barbar.nvim
+" Move to previous/next
+nnoremap <silent>    <A-,> :BufferPrevious<CR>
+nnoremap <silent>    <A-.> :BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
+nnoremap <silent>    <A->> :BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent>    <A-1> :BufferGoto 1<CR>
+nnoremap <silent>    <A-2> :BufferGoto 2<CR>
+nnoremap <silent>    <A-3> :BufferGoto 3<CR>
+nnoremap <silent>    <A-4> :BufferGoto 4<CR>
+nnoremap <silent>    <A-5> :BufferGoto 5<CR>
+nnoremap <silent>    <A-6> :BufferGoto 6<CR>
+nnoremap <silent>    <A-7> :BufferGoto 7<CR>
+nnoremap <silent>    <A-8> :BufferGoto 8<CR>
+nnoremap <silent>    <A-9> :BufferLast<CR>
+" Pin/unpin buffer
+nnoremap <silent>    <A-p> :BufferPin<CR>
+" Close buffer
+nnoremap <silent>    <A-c> :BufferClose<CR>
+" Wipeout buffer
+"                          :BufferWipeout<CR>
+" Close commands
+"                          :BufferCloseAllButCurrent<CR>
+"                          :BufferCloseAllButPinned<CR>
+"                          :BufferCloseBuffersLeft<CR>
+"                          :BufferCloseBuffersRight<CR>
+" Magic buffer-picking mode
+nnoremap <silent> <C-s>    :BufferPick<CR>
+" Sort automatically by...
+nnoremap <silent> <Space>bb :BufferOrderByBufferNumber<CR>
+nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
+nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
+nnoremap <silent> <Space>bw :BufferOrderByWindowNumber<CR>
 
+" Other:
+" :BarbarEnable - enables barbar (enabled by default)
+" :BarbarDisable - very bad command, should never be used
+
+" # Airline
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 0
 
-" # Neomake
+" # Neomake [PLUGIN DELETED]
 let g:neomake_make_maker = {'exe': 'make', 'args': ['--build'], 'errorformat': '%f:%l:%c: %m'}
 let g:neomake_open_list = 2
 
-" # Vim-lsp-cxx-highlight
+" # Vim-lsp-cxx-highlight [PLUGIN DELETED]
 " Enable vim text properties
 let g:lsp_cxx_hl_use_text_props = 1
 
-" # Vim-cmake
+" # Vim-cmake [PLUGIN DELETED]
 let g:cmake_build_type = "Debug"
 
 " # Vim-fswitch
 au! BufEnter *.cpp let b:fswitchdst = 'hpp,h' | let b:fswitchlocs = 'reg:/code/header/,reg:/src/include/,reg:/Code/Header/'
 au! BufEnter *.hpp let b:fswitchdst = 'cpp' | let b:fswitchlocs = 'reg:/header/code/,reg:/include/src/,reg:/Header/Code/'
 
-" # Vim-autoformat
-let g:formatterpath = ['/home/xni/CodeFormatter']
-let g:formatters_cpp = ['astyle_cpp']
-let g:cmake_console_size = 8
-
 " # NERDTree
+" Can be enabled or disabled
+let g:webdevicons_enable_nerdtree = 1
+
 " Start NERDTree when Vim is started without file arguments.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
@@ -365,7 +395,7 @@ let g:closetag_shortcut = '>'
 "
 let g:closetag_close_shortcut = '<leader>>'
 
-" !!! IDK WHAT DIS AREA !!!
+" Enable Terminal TRUE_COLOR
 if (has("nvim"))
 	"For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
