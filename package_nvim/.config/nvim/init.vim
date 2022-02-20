@@ -36,6 +36,7 @@ Plug 'romgrk/barbar.nvim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xiyaowong/nvim-transparent'
 Plug 'ayu-theme/ayu-vim'
+Plug 'rebelot/kanagawa.nvim'
 
 call plug#end()
 
@@ -171,6 +172,7 @@ au! BufEnter *.hpp let b:fswitchdst = 'cpp' | let b:fswitchlocs = 'reg:/header/c
 " # NERDTree
 " Can be enabled or disabled
 let g:webdevicons_enable_nerdtree = 1
+let g:NERDTreeWinPos = "right"
 
 " Start NERDTree when Vim is started without file arguments.
 autocmd StdinReadPre * let s:std_in=1
