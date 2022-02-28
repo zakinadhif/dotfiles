@@ -38,6 +38,9 @@ Plug 'xiyaowong/nvim-transparent'
 Plug 'ayu-theme/ayu-vim'
 Plug 'rebelot/kanagawa.nvim'
 
+" Tailwindcss Plugin
+Plug 'yaegassy/coc-tailwindcss',  {'do': 'npm install && npm run build', 'branch': 'feat/support-v3-and-use-server-pkg'}
+
 call plug#end()
 
 " ===== General Settings
