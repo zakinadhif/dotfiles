@@ -1,0 +1,2 @@
+List of installed packages: https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#List_of_installed_packages
+Get rid of exotic noto fonts: https://forum.endeavouros.com/t/how-to-get-rid-of-noto-fonts-clutter/5042
