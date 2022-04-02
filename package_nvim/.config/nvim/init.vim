@@ -61,15 +61,23 @@ let g:asmsyntax = "nasm"
 syntax on
 
 " Themes
-let g:airline_theme = "ayu_mirage"
+"" let g:airline_theme="ayu_light"
+"" let ayucolor="light"
+"" set background=light
+let g:airline_theme="ayu_dark"
 let g:gruvbox_italic = 1
 
-let ayucolor="mirage"
-set background=dark
+"" let ayucolor="mirage"
+let ayucolor="dark"
+set background="dark"
 colorscheme ayu
 
 let g:transparent_enabled = v:false
 set nowrap
+
+" Enable italic comments
+highlight Comment cterm=italic gui=italic
+
 "-- set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
 "-- hi VertSplit guibg=bg guifg=bg
 
@@ -155,7 +163,7 @@ nnoremap <silent> <Space>bw :BufferOrderByWindowNumber<CR>
 
 " # Airline
 let g:airline#extensions#tabline#enabled = 0
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 
 " # Neomake [PLUGIN DELETED]
 let g:neomake_make_maker = {'exe': 'make', 'args': ['--build'], 'errorformat': '%f:%l:%c: %m'}
