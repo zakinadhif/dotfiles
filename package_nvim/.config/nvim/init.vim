@@ -31,6 +31,7 @@ Plug 'alvan/vim-closetag'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
+Plug 'godlygeek/tabular'
 
 " Themes
 Plug 'vim-airline/vim-airline-themes'
