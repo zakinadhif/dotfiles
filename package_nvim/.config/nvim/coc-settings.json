@@ -2,4 +2,7 @@
   "clangd.semanticHighlighting": true,
   "javascript.suggestionActions.enabled": false,
   "coc.preferences.extensionUpdateCheck": "daily",
+  "omnisharp.path": "latest",
+  "omnisharp.useGlobalMono": "always",
+  "omnisharp.version": "latest"
 }
