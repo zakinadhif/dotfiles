@@ -2,6 +2,4 @@
   "clangd.semanticHighlighting": true,
   "javascript.suggestionActions.enabled": false,
   "coc.preferences.extensionUpdateCheck": "daily",
-  "coc.source.OmniSharp.enable": true,
-  "coc.source.OmniSharp.triggerCharacters": "."
 }
