@@ -32,11 +32,15 @@ Plug 'mlaursen/vim-react-snippets'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
 Plug 'godlygeek/tabular'
+Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Themes
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xiyaowong/nvim-transparent'
 Plug 'ayu-theme/ayu-vim'
+Plug 'morhetz/gruvbox'
 Plug 'rebelot/kanagawa.nvim'
 
 " Tailwindcss Plugin
@@ -45,6 +49,8 @@ Plug 'yaegassy/coc-tailwindcss',  {'do': 'npm install && npm run build', 'branch
 call plug#end()
 
 " ===== General Settings
+" Cursor line
+set cursorline
 " Enable mouse support
 set mouse=a
 
@@ -62,16 +68,26 @@ let g:asmsyntax = "nasm"
 syntax on
 
 " Themes
+"" Ayu Light
 "" let g:airline_theme="ayu_light"
 "" let ayucolor="light"
 "" set background=light
-let g:airline_theme="ayu_dark"
-let g:gruvbox_italic = 1
+"" colorscheme ayu
 
+"" Ayu Dark / Mirage
+"" let g:airline_theme="ayu_dark"
 "" let ayucolor="mirage"
-let ayucolor="dark"
-set background="dark"
-colorscheme ayu
+"" let ayucolor="dark"
+"" let background=dark
+"" colorscheme ayu
+
+"" Gruvbox
+let g:gruvbox_italic = 1
+let g:gruvbox_transparent_bg=1
+set background=dark
+autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
+let g:gitgutter_override_sign_column_highlight=1
+colorscheme gruvbox
 
 let g:transparent_enabled = v:false
 set nowrap
@@ -425,3 +441,12 @@ endif
 
 set exrc
 set secure
+
+"" User-defined functionalities
+function! CopyMatches(reg)
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
+  let reg = empty(a:reg) ? '+' : a:reg
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)
