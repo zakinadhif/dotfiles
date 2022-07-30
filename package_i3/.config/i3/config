@@ -2,7 +2,7 @@
 # Reference: https://i3wm.org/docs/userguide.html
 
 # Modifier Keys
-set $mod Mod1
+set $mod Mod4
 set $alt Mod1
 set $super Mod4
 
@@ -158,8 +158,8 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
-bindsym $alt+Control+Right workspace next
-bindsym $alt+Control+Left workspace prev
+bindsym $mod+Control+Right workspace next
+bindsym $mod+Control+Left workspace prev
 
 bindsym $mod+q workspace number $ws4
 
@@ -174,8 +174,8 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
-bindsym $alt+Shift+Control+Right move container to workspace next; workspace next
-bindsym $alt+Shift+Control+Left move container to workspace prev; workspace prev
+bindsym $mod+Shift+Control+Right move container to workspace next; workspace next
+bindsym $mod+Shift+Control+Left move container to workspace prev; workspace prev
 
 # Scratchpad Configuration
 bindsym $mod+Shift+minus move scratchpad
@@ -221,11 +221,11 @@ mode "$mode_dunst" {
 bindsym $mod+n mode "$mode_dunst"
 
 # [notification] Keybinds: Minimal Keybinds Mode (S stands for Safe)
-set $mode_minimal_keybinds Minimal Keybinds Mode
-mode "$mode_minimal_keybinds" {
-	bindsym $super+Escape mode "default"
-}
-bindsym $mod+shift+s mode "$mode_minimal_keybinds"
+# set $mode_minimal_keybinds Minimal Keybinds Mode
+# mode "$mode_minimal_keybinds" {
+# 	bindsym $super+Escape mode "default"
+# }
+# bindsym $mod+shift+s mode "$mode_minimal_keybinds"
 
 # Color
 set $base00 #101218
