@@ -15,35 +15,22 @@ general {
 }
 
 order += "disk /"
+order += "disk /home"
+order += "cpu_temperature 0"
 order += "load"
 order += "memory"
-order += "cpu_temperature 0"
 order += "wireless _first_"
 order += "volume master"
 order += "battery 0"
 order += "tztime local"
 
-cpu_temperature 0 {
-        format = " %degrees °C  "
-        path = "/sys/devices/platform/asus-nb-wmi/hwmon/hwmon6/temp1_input"
-}
-
-wireless _first_ {
-        format_up = " %essid  "
-        format_down = " Down  "
-}
-
+# General
 volume master {
-        format = " %volume  "
-        format_muted = " %volume  "
+        format = " %volume "
+        format_muted = " %volume "
         device = "default"
         mixer = "Master"
         mixer_idx = 0
-}
-
-ethernet _first_ {
-        format_up = "E: %ip (%speed)"
-        format_down = "E: down"
 }
 
 battery 0 {
@@ -56,20 +43,44 @@ battery 0 {
         status_full = ""
 }
 
-tztime local {
-        format = "   %Y-%m-%d    %I:%M  "
+# Disks
+disk "/" {
+        format = " %avail "
 }
 
-disk "/" {
+disk "/home" {
         format = " %avail  "
 }
 
+# Performance Details
+cpu_temperature 0 {
+        format = " %degrees°C "
+        path = "/sys/bus/acpi/devices/LNXTHERM:00/thermal_zone/temp"
+}
+
 load {
-        format = " %1min  "
+        format = " %1min "
 }
 
 memory {
         format = " %used  "
         threshold_degraded = "1G"
         format_degraded = " < %available  "
+}
+
+# Communication Interfaces
+wireless _first_ {
+        format_up = " %essid   %ip  "
+        format_down = " Down  "
+}
+
+ethernet _first_ {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+}
+
+# Time and Date
+
+tztime local {
+        format = "   %Y-%m-%d  %I:%M   "
 }
