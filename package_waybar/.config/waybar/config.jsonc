@@ -17,8 +17,8 @@
     },
     "clock": {
         "interval": 1,
-        "format": "<span size=\"x-large\"></span>  {:%Y-%m-%d}   <span size=\"x-large\"></span>  {:%H:%M}",
-        "format-alt": "<span size=\"x-large\"></span>  {:%A, %d %B %Y}   <span size=\"x-large\"></span>  {:%H:%M:%S}",
+        "format": "<span size=\"x-large\"></span>  {0:%Y-%m-%d}   <span size=\"x-large\"></span>  {0:%H:%M}",
+        "format-alt": "<span size=\"x-large\"></span>  {0:%A, %d %B %Y}   <span size=\"x-large\"></span>  {0:%H:%M:%S}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>"
     },
     "network": {
