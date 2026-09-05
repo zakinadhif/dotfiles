@@ -1,0 +1,12 @@
+#!/bin/sh
+
+choice="$(printf '%s\n' Lock Suspend Hibernate Log\ out Reboot Power\ off | fuzzel --dmenu --prompt='Power: ')" || exit 0
+
+case "$choice" in
+    Lock) swaylock -f ;;
+    Suspend) systemctl suspend ;;
+    Hibernate) systemctl hibernate ;;
+    "Log out") swaymsg exit ;;
+    Reboot) systemctl reboot ;;
+    "Power off") systemctl poweroff ;;
+esac

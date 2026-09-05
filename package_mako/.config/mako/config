@@ -1,0 +1,21 @@
+font=Source Code Pro 11
+background-color=#1f222df2
+text-color=#d1d4e0
+border-color=#606c82
+border-size=2
+border-radius=8
+width=360
+height=140
+margin=12
+padding=12
+default-timeout=6000
+ignore-timeout=1
+max-visible=5
+layer=overlay
+
+[urgency=low]
+border-color=#4c566a
+
+[urgency=critical]
+border-color=#ee829f
+default-timeout=0

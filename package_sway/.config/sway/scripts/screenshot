@@ -1,0 +1,42 @@
+#!/bin/sh
+
+set -eu
+picture_dir="$(xdg-user-dir PICTURES)"
+mkdir -p "$picture_dir"
+stamp="$(date +%Y-%m-%d-%H%M%S)"
+
+notify_saved() {
+    notify-send "Screenshot saved" "$1"
+}
+
+focused_geometry() {
+    swaymsg -t get_tree | jq -r '.. | select(.focused? == true).rect | "\(.x),\(.y) \(.width)x\(.height)"'
+}
+
+case "${1:-}" in
+    all_save)
+        file="$picture_dir/${stamp}_screenshot.png"
+        grim "$file"
+        notify_saved "$file"
+        ;;
+    window_save)
+        file="$picture_dir/${stamp}_window.png"
+        grim -g "$(focused_geometry)" "$file"
+        notify_saved "$file"
+        ;;
+    selection_save)
+        geometry="$(slurp)" || exit 0
+        file="$picture_dir/${stamp}_selection.png"
+        grim -g "$geometry" "$file"
+        notify_saved "$file"
+        ;;
+    selection_copy)
+        geometry="$(slurp)" || exit 0
+        grim -g "$geometry" - | wl-copy --type image/png
+        notify-send "Screenshot copied" "The selected area is on the clipboard."
+        ;;
+    *)
+        echo "Usage: $0 {all_save|window_save|selection_save|selection_copy}" >&2
+        exit 2
+        ;;
+esac

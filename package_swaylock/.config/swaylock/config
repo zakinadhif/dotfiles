@@ -1,0 +1,18 @@
+daemonize
+show-failed-attempts
+font=Source Code Pro
+font-size=24
+indicator-radius=90
+indicator-thickness=8
+color=101218
+inside-color=1f222ddd
+inside-clear-color=fafe7cdd
+inside-ver-color=81a1c1dd
+inside-wrong-color=ee829fdd
+ring-color=606c82
+ring-clear-color=fafe7c
+ring-ver-color=81a1c1
+ring-wrong-color=ee829f
+key-hl-color=a5ffe1
+bs-hl-color=ee829f
+text-color=d1d4e0

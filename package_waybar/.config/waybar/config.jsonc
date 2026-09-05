@@ -1,0 +1,82 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["clock"],
+    "modules-right": ["network", "cpu", "memory", "temperature", "pulseaudio", "backlight", "battery", "tray", "custom/power"],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}"
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "clock": {
+        "interval": 1,
+        "format": "<span size=\"x-large\"></span>  {:%Y-%m-%d}   <span size=\"x-large\"></span>  {:%H:%M}",
+        "format-alt": "<span size=\"x-large\"></span>  {:%A, %d %B %Y}   <span size=\"x-large\"></span>  {:%H:%M:%S}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+    },
+    "network": {
+        "format-wifi": "<span size=\"x-large\"></span>  {essid}  {signalStrength}%",
+        "format-ethernet": "<span size=\"x-large\">󰈀</span>  {ipaddr}",
+        "format-disconnected": "<span size=\"x-large\">󰖪</span>",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "on-click": "nm-connection-editor"
+    },
+    "cpu": {
+        "format": "<span size=\"x-large\"></span>  {usage}%",
+        "tooltip": true
+    },
+    "memory": {
+        "format": "<span size=\"x-large\"></span>  {percentage}%",
+        "tooltip-format": "{used:0.1f} GiB used of {total:0.1f} GiB"
+    },
+    "temperature": {
+        "critical-threshold": 90,
+        "format": "<span size=\"large\"></span>  {temperatureC}°C"
+    },
+    "pulseaudio": {
+        "format": "<span size=\"x-large\">{icon}</span>  {volume}%",
+        "format-muted": "<span size=\"x-large\">󰝟</span>  muted",
+        "format-icons": {
+            "headphone": "",
+            "headset": "󰋎",
+            "phone": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "scroll-step": 5
+    },
+    "backlight": {
+        "device": "acpi_video0",
+        "format": "<span size=\"x-large\">󰃠</span>  {percent}%",
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "<span size=\"large\">{icon}</span>  {capacity}%",
+        "format-charging": "<span size=\"large\">󰂄</span>  {capacity}%",
+        "format-plugged": "<span size=\"large\"></span>  {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{timeTo}  {power:.1f} W"
+    },
+    "tray": {
+        "spacing": 8
+    },
+    "custom/power": {
+        "format": "<span size=\"x-large\"></span>",
+        "tooltip": false,
+        "on-click": "~/.config/sway/scripts/power-menu"
+    }
+}
